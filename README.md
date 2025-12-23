@@ -22,12 +22,12 @@ An interactive web-based B+ Tree data structure visualization tool with a C-base
 ```
 bplustree/
 ├── BPlusTree/
-│   ├── main.c              # Core B+ Tree implementation
-│   ├── BPlusTree.vcxproj   # Visual Studio project file
-│   └── Debug/              # Build output (not tracked)
-├── index.html              # Web interface
-├── .gitignore              # Git ignore file
-└── README.md               # Project documentation
+│   ├── main.c             
+│   ├── BPlusTree.vcxproj   
+│   └── BPlusTree.vcxproj.filters             
+├── index.html             
+├── .gitignore              
+└── README.md             
 ```
 
 ## 🚀 Steps to Run

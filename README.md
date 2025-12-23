@@ -30,9 +30,7 @@ bplustree/
 └── README.md               # Project documentation
 ```
 
-## 🚀 Installation & Setup
-
-### Steps to Run
+## 🚀 Steps to Run
 
 1. **Clone the repository**
 ```bash

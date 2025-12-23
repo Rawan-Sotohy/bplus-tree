@@ -83,14 +83,10 @@ Then rebuild the project and copy the new `.exe` file.
 ###  Home
 ![Home](images/pic1.png)
 
-###  Insert
-![Insert](images/pic2.png)
 
 ###  Visualization
 ![Visualization](images/pic3.jpeg)
 
-###  File
-![File](images/pic4.jpeg)
 
 ---
 ## 👥 Authors & Contributors

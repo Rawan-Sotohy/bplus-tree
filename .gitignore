@@ -1,0 +1,25 @@
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+
+# Build outputs
+Debug/
+Release/
+x64/
+x86/
+*.exe
+*.obj
+*.pdb
+*.ilk
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+bplustree.txt
+tree_visual.html

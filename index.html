@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B+ Tree Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+            input[type="number"]:focus {
+                outline: none;
+                border-color: #667eea;
+            }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            button:active {
+                transform: translateY(0);
+            }
+
+        .btn-insert {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-search {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-reset {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b 0%, #c92a2a 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 B+ Tree Manager</h1>
+        <p class="subtitle">Insert and search values in a B+ Tree using CGI</p>
+        <form method="POST" action="/cgi-bin/bplustree.exe">
+            <input type="hidden" name="redirect" value="/bplustree/index.html">
+            <div class="form-group">
+                <label for="value">Enter a Number:</label>
+                <input type="number" id="value" name="value" placeholder="e.g., 42">
+            </div>
+            <div class="button-group">
+                <button type="submit" name="action" value="insert" class="btn-insert">
+                    ➕ Insert
+                </button>
+                <button type="submit" name="action" value="search" class="btn-search">
+                    🔍 Search
+                </button>
+            </div>
+            <div style="margin-top: 15px;">
+                <button type="submit" name="action" value="reset" class="btn-reset"
+                        onclick="return confirm('Are you sure you want to delete all data and reset the tree?');">
+                    🗑️ Reset Tree
+                </button>
+            </div>
+        </form>
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="bplustree.txt" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">
+                📄 View Tree Structure
+            </a>
+            <span style="color: #999; margin: 0 10px;">|</span>
+            <a href="tree_visual.html" target="_blank" style="color: #f5576c; text-decoration: none; font-weight: 600;">
+                🌳 View Visual Tree
+            </a>
+        </div>
+    </div>
+</body>
+</html>

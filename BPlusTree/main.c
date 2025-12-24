@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,6 +38,8 @@ void parsePostData(char* data, char* action, int* value);
 void generateHTMLTree(BPlusTree* tree, const char* filename);
 void printNodeHTML(FILE* file, BPlusNode* node, int level);
 void printAllValuesHTML(FILE* file, BPlusTree* tree);
+void deleteKey(BPlusTree* tree, int key);  
+BPlusNode* deleteFromNode(BPlusNode* node, int key);
 
 BPlusTree* createTree() {
     BPlusTree* tree = (BPlusTree*)malloc(sizeof(BPlusTree));
@@ -475,6 +477,36 @@ void printAllValuesHTML(FILE* file, BPlusTree* tree) {
     }
 }
 
+void deleteKey(BPlusTree* tree, int key) {
+    if (!tree || !tree->root) return;
+
+    BPlusNode* leaf = findLeaf(tree->root, key);
+
+    // Find and remove the key
+    int found = 0;
+    for (int i = 0; i < leaf->numKeys; i++) {
+        if (leaf->keys[i] == key) {
+            // Shift keys left
+            for (int j = i; j < leaf->numKeys - 1; j++) {
+                leaf->keys[j] = leaf->keys[j + 1];
+            }
+            leaf->numKeys--;
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) return;
+
+    // If root becomes empty and has children, make first child the new root
+    if (tree->root->numKeys == 0 && !tree->root->isLeaf) {
+        BPlusNode* oldRoot = tree->root;
+        tree->root = tree->root->children[0];
+        tree->root->parent = NULL;
+        free(oldRoot);
+    }
+}
+
 int main() {
     printf("Content-Type: text/html\r\n\r\n");
 
@@ -554,13 +586,21 @@ int main() {
         if (found) {
             printf("<h2>✓ Found!</h2>\n");
             printf("<div class='success'>Value <strong>%d</strong> exists in the B+ Tree</div>\n", value);
+
+            // Add Delete button
+            printf("<form method='POST' action='/cgi-bin/bplustree.exe' style='display:inline;'>\n");
+            printf("<input type='hidden' name='action' value='delete'>\n");
+            printf("<input type='hidden' name='value' value='%d'>\n", value);
+            printf("<button type='submit' style='padding:12px 24px; background:linear-gradient(135deg, #ff6b6b 0%%, #c92a2a 100%%); color:white; border:none; border-radius:8px; font-weight:600; cursor:pointer; margin:10px 5px;' onclick='return confirm(\"Are you sure you want to delete %d?\");'>🗑️ Delete</button>\n", value);
+            printf("</form>\n");
+
+            printf("<a href='/bplustree/index.html'>Go Back</a>\n");
         }
         else {
             printf("<h2>✗ Not Found</h2>\n");
             printf("<div class='error'>Value <strong>%d</strong> does not exist in the B+ Tree</div>\n", value);
+            printf("<a href='/bplustree/index.html'>Go Back</a>\n");
         }
-        printf("<a href='/bplustree/index.html'>Go Back</a>\n");
-        printf("<a href='/bplustree/tree_visual.html' target='_blank'>🌳 View Visual Tree</a>\n");
     }
     else if (strcmp(action, "reset") == 0) {
         remove("C:/xampp/htdocs/bplustree/bplustree.txt");
@@ -569,6 +609,16 @@ int main() {
         printf("<h2>🗑️ Reset Complete!</h2>\n");
         printf("<div class='success'>All data has been deleted successfully.<br>The tree is now empty and ready for new data.</div>\n");
         printf("<a href='/bplustree/index.html'>Start Fresh</a>\n");
+    }
+    else if (strcmp(action, "delete") == 0) {
+        deleteKey(tree, value);
+        saveTree(tree, "C:/xampp/htdocs/bplustree/bplustree.txt");
+        generateHTMLTree(tree, "C:/xampp/htdocs/bplustree/tree_visual.html");
+
+        printf("<h2>🗑️ Deleted!</h2>\n");
+        printf("<div class='success'>Value <strong>%d</strong> has been deleted from the B+ Tree</div>\n", value);
+        printf("<a href='/bplustree/index.html'>Go Back</a>\n");
+        printf("<a href='/bplustree/tree_visual.html' target='_blank'>🌳 View Visual Tree</a>\n");
     }
 
     printf("</div>\n");

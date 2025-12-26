@@ -5,11 +5,10 @@ An interactive web-based B+ Tree data structure visualization tool with a C-base
 ## 📋 Features
 
 - ✅ **Insert** values into the B+ Tree
-- 🔍 **Search** for values in the tree
 - 🌳 **Visual Tree Display** with color-coded nodes
-- 📊 **In-order traversal** display
-- 🗑️ **Reset Tree** to start fresh
-- 💾 **Persistent storage** of tree structure
+- 📃 **View Tree Structure** To display the tree in text
+- 🔄 **Reset Tree**  to start fresh
+  
 
 ## 🛠️ Technologies Used
 
@@ -70,18 +69,20 @@ bplustree/
 3. The value will be added to the B+ Tree
 4. View the visual representation by clicking **"🌳 View Visual Tree"**
 
-### Search for a Value
-1. Enter a number in the input field
-2. Click **"🔍 Search"**
-3. The system will display if the value exists in the tree
+### Reset Tree
+Click "🔄 Reset Tree" to clear all data and reset the tree to empty.
 
-Then rebuild the project and copy the new `.exe` file.
+### View Tree Structure
+Click "📃 View Tree Structure" to display the tree in text format as saved in the file.
+
+### View Visual Tree
+Click "🌳 View Visual Tree" to open a page showing the tree visually with colors.
 
 ---
 ## 📸 Screenshots
 
 ###  Home
-![Home](images/pic1.png)
+![Home](images/pic5.jpg)
 
 
 ###  Visualization

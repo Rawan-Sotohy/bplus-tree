@@ -89,9 +89,3 @@ Click "🌳 View Visual Tree" to open a page showing the tree visually with colo
 ![Visualization](images/pic3.jpeg)
 
 
----
-## 👥 Authors & Contributors
-
-- [Jannah Ayman](https://github.com/jannah-ayman)
-- [Rawan Sotohy](https://github.com/Rawan-Sotohy)
-- [Nancy Saad](https://github.com/nancyabdelbaryy)
